@@ -16,14 +16,19 @@ class App extends React.Component {
         }
         event.target.value !== "" ?
             this.setState({count: event.target.value}) : this.setState({count: 0})
+        this.counterGroup.setTotalZero()
+    }
+
+    onRef = (ref) => {
+        this.counterGroup = ref
     }
 
     render() {
         return <div className="App">
             <header className="App-header">
                 <span>number of counter:
-                <input type="text" value={this.state.count} onChange={this.inputChange}/></span>
-                <CounterGroup CounterCount={this.state.count}/>
+                <input onChange={this.inputChange}/></span>
+                <CounterGroup CounterCount={this.state.count} onRef={this.onRef}/>
             </header>
         </div>
     }

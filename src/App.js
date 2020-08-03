@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import CounterGroup from "./components/CounterSet";
 import store from "./components/store";
+import {TOTAL_CHANGE} from "./components/Actions";
 
 class App extends React.Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class App extends React.Component {
         event.target.value !== "" ?
             this.setState({count: event.target.value}) : this.setState({count: 0});
         this.counterGroup.setTotalZero();
-        store.dispatch({type: 'totalChange', value: this.state.count});
+        store.dispatch({type: TOTAL_CHANGE, value: this.state.count});
     }
 
     onRef = (ref) => {

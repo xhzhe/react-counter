@@ -1,12 +1,13 @@
 import React from 'react'
+import store from "../store";
 
 class Counter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             number: 0,
-            total: 0
         }
+        store.subscribe(this.setZero);
     }
 
     add = () => {
@@ -19,14 +20,8 @@ class Counter extends React.Component {
         this.props.setTotal(-1);
     }
 
-    static getDerivedStateFromProps(props, state) {
-        if (props.total !== state.total) {
-            return {
-                number: 0,
-                total: props.total
-            }
-        }
-        return null;
+    setZero = () => {
+        this.setState({number: 0})
     }
 
     render() {

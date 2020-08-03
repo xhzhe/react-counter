@@ -25,7 +25,6 @@ class CounterGroup extends React.Component {
         return <div>
             <span>total: {this.state.total}</span>
             {new Array(parseInt(this.props.CounterCount)).fill(0).map(((value, index) => <Counter key={index}
-                                                                                                  total={this.props.CounterCount}
                                                                                                   setTotal={this.setTotal}/>))}
         </div>
     }

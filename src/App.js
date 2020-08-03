@@ -11,6 +11,9 @@ class App extends React.Component {
     }
 
     inputChange = (event) => {
+        if (isNaN(event.target.value)) {
+            return;
+        }
         event.target.value !== "" ?
             this.setState({count: event.target.value}) : this.setState({count: 0})
     }

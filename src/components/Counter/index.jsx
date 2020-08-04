@@ -6,7 +6,6 @@ class Counter extends React.Component {
         this.state = {
             number: 0,
         }
-        console.log(this.props.prop)
     }
 
     static getDerivedStateFromProps(props, state) {

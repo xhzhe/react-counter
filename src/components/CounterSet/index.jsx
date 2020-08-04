@@ -2,13 +2,11 @@ import React from "react";
 import Counter from "../Counter";
 
 class CounterGroup extends React.Component {
-    
+
     inputChange = (event) => {
         if (isNaN(event.target.value)) {
             return;
         }
-        // event.target.value !== "" ?
-        //     this.setState({count: event.target.value}) : this.setState({count: 0});
         event.target.value !== "" ? this.props.changeCount({type: "CHANGE", value: event.target.value}) :
             this.props.changeCount({type: "CHANGE", value: 0});
         this.props.updateTotal({type: "EMPTY"});

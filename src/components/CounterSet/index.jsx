@@ -2,30 +2,25 @@ import React from "react";
 import Counter from "../Counter";
 
 class CounterGroup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            total: 0
+    
+    inputChange = (event) => {
+        if (isNaN(event.target.value)) {
+            return;
         }
-    }
-
-    setTotal = (value) => {
-        this.setState({total: this.state.total + value})
-    }
-
-    setTotalZero = () => {
-        this.setState({total: 0})
-    }
-
-    componentDidMount() {
-        this.props.onRef(this)
+        // event.target.value !== "" ?
+        //     this.setState({count: event.target.value}) : this.setState({count: 0});
+        event.target.value !== "" ? this.props.changeCount({type: "CHANGE", value: event.target.value}) :
+            this.props.changeCount({type: "CHANGE", value: 0});
+        this.props.updateTotal({type: "EMPTY"});
     }
 
     render() {
         return <div>
-            <span>total: {this.state.total}</span>
-            {new Array(parseInt(this.props.CounterCount)).fill(0).map(((value, index) => <Counter key={index}
-                                                                                                  setTotal={this.setTotal}/>))}
+            <div>total: {this.props.total}</div>
+            <span>number of counter:
+                <input onChange={this.inputChange}/></span>
+            {new Array(parseInt(this.props.count)).fill(0).map(((value, index) => <Counter key={index} prop={this.props}
+                                                                                           total={this.props.count}/>))}
         </div>
     }
 }

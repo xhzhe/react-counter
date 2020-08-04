@@ -1,5 +1,4 @@
 import React from 'react'
-import store from "../store";
 
 class Counter extends React.Component {
     constructor(props) {
@@ -7,21 +6,27 @@ class Counter extends React.Component {
         this.state = {
             number: 0,
         }
-        store.subscribe(this.setZero);
+        console.log(this.props.prop)
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (props.total !== state.total) {
+            return {
+                number: 0,
+                total: props.total
+            }
+        }
+        return null;
     }
 
     add = () => {
         this.setState((preState) => ({number: preState.number++}))
-        this.props.setTotal(1);
+        this.props.prop.updateTotal({type: "ADD"});
     }
 
     reduce = () => {
         this.setState(({number: this.state.number - 1}))
-        this.props.setTotal(-1);
-    }
-
-    setZero = () => {
-        this.setState({number: 0})
+        this.props.prop.updateTotal({type: "SUB"});
     }
 
     render() {
